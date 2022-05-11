@@ -1,0 +1,28 @@
+Being from Ohio, and irked by the fact that North Carolina gets to claim the title of "first in flight" when both of the original
+aviators were born in Ohio, I wanted to hold onto our credibility as the birthplace of aviation by examining what appears to be a
+strangely high proportion of US astronauts being born in Ohio. Ohioans make up about 7.5% of all US astronauts, including
+the particularly famous John Glenn (first American in space) and Neil Armstrong (first individual on moon), which seems like quite
+a few, since Ohio only makes up about 3.6% of the US population as of 2022.
+
+While I was tempted to go around claiming this as evidence of Ohio's ability to forge brilliant scientists and adventurers, I recognized
+that this effect size was small enough that it could very well be a coincidence, especially given the low number of US astronauts. With
+this in mind, I performed statistical testing to see if chance could appropriately account for the difference in how many astronauts
+we'd expect to see given Ohio's population and how many we actually see.
+
+I first acquired data documenting live births in the United States as a whole from the CDC's website, and got a rough estimate for the
+amount of live births that happened in Ohio in particular based on certificates on Ancestry.com. Cross referencing this with other sources
+typically showed a difference of no more than about half a percent, leading me to believe that this method was accurate enough for my
+purposes. I then made a count of the amount of astronauts born in each year from 1921-1978 based on a dataset made by The Guardian, and
+hand-coded how many astronauts from Ohio were born in each year.
+
+I assumed that the amount of astronauts from Ohio born in a year was binomially distributed given the total amount of astronauts born that
+year, in order to control for time-based factors like government funding and public interest in space travel, and the proportion of live
+births in Ohio vs. the entire US. The expected amount of astronauts from Ohio each year was thus the expected value of the binomial 
+distribution for that year, the product of the amount of astronauts born that year and the proportion of people born in Ohio. After
+calculating the expected amount of astronauts, the statistic of interest became the mean difference between the amount of astronauts born
+in Ohio and the expected amount; the observed difference was 0.1011, which didn't seem too extreme. I then generated a million replicates 
+to create a null distribution under these assumptions, where each replicate was a collection of binomial trials for each of the years in
+question, with parameters matching the year. The visualization of the observed stat vs. the distribution of stats seen in the null
+distribution is shown in the null_dist.jpg graphic. Astute observers of this graphic will note that it is not that extreme at all! In the
+null distribution, about 11.4% of null statistics were greater than or equal to the observed statistic (p = 0.114439). This was crushing,
+but it's important to publish even the results you're bummed about!
